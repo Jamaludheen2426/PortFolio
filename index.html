@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J. M. Jamal - Node.js Developer & UI/UX Designer</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">J.M.J</a>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#resume" class="nav-link">Resume</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="particles"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="typing-text">Hi, I'm J. M. Jamal</span>
+            </h1>
+            <p class="hero-subtitle">Node.js Developer & UI/UX Designer</p>
+            <p class="hero-description">
+                Creating seamless digital experiences through powerful backend solutions and intuitive design
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#resume" class="btn btn-secondary">Download Resume</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-photo">
+                    <!-- Replace with your actual photo -->
+                    <div class="photo-placeholder">
+                        <i class="fas fa-user"></i>
+                        <p>Your Photo Here</p>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Bridging Code and Design</h3>
+                    <p>
+                        I'm a passionate dual-skilled professional who thrives at the intersection of backend development and UI/UX design. 
+                        With expertise in Node.js and Express.js on the technical side, and Figma mastery for design, I create comprehensive 
+                        digital solutions from conception to deployment.
+                    </p>
+                    <p>
+                        My experience spans real-world projects including procurement systems, admin dashboards, product detail pages, 
+                        and authentication flows. I excel at translating complex requirements into both robust backend architectures 
+                        and intuitive user experiences.
+                    </p>
+                    
+                    <div class="skills-section">
+                        <div class="skills-column">
+                            <h4><i class="fas fa-code"></i> Backend Development</h4>
+                            <div class="skill-item">
+                                <span>Node.js</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Express.js</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>MongoDB</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>REST APIs</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skills-column">
+                            <h4><i class="fas fa-palette"></i> UI/UX Design</h4>
+                            <div class="skill-item">
+                                <span>Figma</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="92%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Wireframing</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Design Systems</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>User Research</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="backend">Backend</button>
+                <button class="filter-btn" data-filter="uiux">UI/UX</button>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Backend Project 1 -->
+                <div class="project-card" data-category="backend">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-server"></i>
+                            <p>Procurement System API</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Procurement Management System</h3>
+                        <p>Full-featured backend API for procurement workflow management with authentication, real-time updates, and comprehensive reporting.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">JWT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/your-username/procurement-api" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UI/UX Project 1 -->
+                <div class="project-card" data-category="uiux">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-mobile-alt"></i>
+                            <p>Admin Dashboard Design</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Admin Dashboard Interface</h3>
+                        <p>Comprehensive admin dashboard design with data visualization, user management, and responsive layouts for modern web applications.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">Design System</span>
+                            <span class="tech-tag">Responsive</span>
+                            <span class="tech-tag">Data Viz</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.figma.com/your-design-link" target="_blank" class="project-link">
+                                <i class="fas fa-paint-brush"></i> Figma
+                            </a>
+                            <a href="#" target="_blank" class="project-link">
+                                <i class="fas fa-eye"></i> Prototype
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend Project 2 -->
+                <div class="project-card" data-category="backend">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-lock"></i>
+                            <p>Authentication API</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Authentication & Authorization API</h3>
+                        <p>Secure authentication system with JWT tokens, role-based access control, password reset, and email verification.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">JWT</span>
+                            <span class="tech-tag">bcrypt</span>
+                            <span class="tech-tag">Nodemailer</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/your-username/auth-api" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> API Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UI/UX Project 2 -->
+                <div class="project-card" data-category="uiux">
+                    <div class="project-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>E-commerce UI</p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>E-commerce Product Pages</h3>
+                        <p>Modern e-commerce interface design including product listings, detail pages, cart, and checkout flow with mobile-first approach.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Figma</span>
+                            <span class="tech-tag">User Flow</span>
+                            <span class="tech-tag">Mobile First</span>
+                            <span class="tech-tag">A/B Testing</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.figma.com/your-ecommerce-design" target="_blank" class="project-link">
+                                <i class="fas fa-paint-brush"></i> Figma
+                            </a>
+                            <a href="#" target="_blank" class="project-link">
+                                <i class="fas fa-eye"></i> Prototype
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume section">
+        <div class="container">
+            <h2 class="section-title">My Journey</h2>
+            <div class="resume-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023 - Present</div>
+                        <div class="timeline-content">
+                            <h3>Full-Stack Developer & UI/UX Designer</h3>
+                            <h4>Freelance</h4>
+                            <p>Developing end-to-end web applications and designing user-centered interfaces for various clients. Specialized in Node.js backend development and Figma design workflows.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022 - 2023</div>
+                        <div class="timeline-content">
+                            <h3>Backend Developer</h3>
+                            <h4>Tech Solutions Inc.</h4>
+                            <p>Built scalable REST APIs and microservices using Node.js and Express.js. Implemented authentication systems, database optimization, and API documentation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021 - 2022</div>
+                        <div class="timeline-content">
+                            <h3>UI/UX Designer</h3>
+                            <h4>Creative Agency</h4>
+                            <p>Designed responsive web and mobile interfaces using Figma. Created design systems, conducted user research, and collaborated with development teams on implementation.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resume-download">
+                    <a href="assets/JM_Jamal_Resume.pdf" download class="btn btn-primary">
+                        <i class="fas fa-download"></i> Download Full Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Work Together</h3>
+                    <p>I'm always interested in new opportunities and exciting projects. Whether you need a robust backend solution or an intuitive user interface, let's discuss how we can bring your ideas to life.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>jamal@example.com</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Your City, Country</span>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/Jamaludheen2426" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/your-profile" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://behance.net/your-profile" target="_blank" class="social-link">
+                            <i class="fab fa-behance"></i>
+                        </a>
+                        <a href="https://wa.me/your-number" target="_blank" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                        <span class="form-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="form-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <span class="form-error"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>&copy; 2024 J. M. Jamal. All rights reserved.</p>
+                </div>
+                <div class="footer-center">
+                    <nav class="footer-nav">
+                        <a href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#contact">Contact</a>
+                    </nav>
+                </div>
+                <div class="footer-right">
+                    <p>Designed & Developed by J. M. Jamal</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

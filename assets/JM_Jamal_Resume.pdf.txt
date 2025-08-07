@@ -1,0 +1,10 @@
+This is a placeholder for your resume PDF file.
+
+Please replace this file with your actual resume:
+1. Create or update your resume as a PDF
+2. Name it "JM_Jamal_Resume.pdf"
+3. Replace this file in the assets folder
+
+The download link in the Resume section of your portfolio will then work correctly.
+
+Note: Remove this .txt extension when you add your real PDF file.
