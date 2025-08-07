@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # J. M. Jamal - Portfolio Website
 
 A modern, responsive portfolio website showcasing both backend development and UI/UX design skills.
@@ -213,3 +214,6 @@ This portfolio template is free to use for personal and commercial projects. Att
 **Made with ❤️ using HTML, CSS, and Vanilla JavaScript**
 
 *Last updated: January 2024*
+=======
+# PortFolio
+>>>>>>> 10d7f15a67065d4b0b60c911e571e97a2feca247
