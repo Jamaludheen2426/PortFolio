@@ -320,9 +320,10 @@ body {
 
 .hero-content {
   text-align: center;
-  z-index: 2;
+  z-index: 10;
   max-width: 800px;
   padding: 2rem;
+  position: relative;
 }
 
 .hero-title {
@@ -336,6 +337,7 @@ body {
 }
 
 .typing-text {
+  color: var(--accent-primary);
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
