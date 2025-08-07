@@ -1,5 +1,5 @@
 // =============================================
-// PORTFOLIO WEBSITE JAVASCRIPT
+// PORTFOLIO WEBSITE JAVASCRIPT - FIXED VERSION
 // Created by J. M. Jamal
 // =============================================
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
     
     // Check for saved theme preference or default to 'dark'
-    const currentTheme = localStorage.getItem('theme') || 'dark';
+    const currentTheme = sessionStorage.getItem('theme') || 'dark';
     
     // Set initial theme
     if (currentTheme === 'light') {
@@ -32,12 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
             body.classList.remove('dark-theme');
             body.classList.add('light-theme');
             themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            localStorage.setItem('theme', 'light');
+            sessionStorage.setItem('theme', 'light');
         } else {
             body.classList.remove('light-theme');
             body.classList.add('dark-theme');
             themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            localStorage.setItem('theme', 'dark');
+            sessionStorage.setItem('theme', 'dark');
         }
     });
 
@@ -127,24 +127,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('reveal');
+                entry.target.classList.add('active');
                 
                 // Animate skill bars when about section is revealed
                 if (entry.target.classList.contains('about')) {
-                    animateSkillBars();
+                    setTimeout(() => {
+                        animateSkillBars();
+                    }, 300);
                 }
                 
                 // Animate section titles
                 const sectionTitle = entry.target.querySelector('.section-title');
                 if (sectionTitle) {
-                    sectionTitle.classList.add('reveal');
+                    sectionTitle.classList.add('active');
                 }
             }
         });
     }, observerOptions);
 
-    // Observe all sections
+    // Observe all sections for reveal animations
     document.querySelectorAll('.section').forEach(section => {
+        section.classList.add('reveal');
         observer.observe(section);
     });
 
@@ -154,38 +157,34 @@ document.addEventListener('DOMContentLoaded', function() {
     function animateSkillBars() {
         const skillBars = document.querySelectorAll('.skill-progress');
         
-        skillBars.forEach(bar => {
+        skillBars.forEach((bar, index) => {
             const width = bar.getAttribute('data-width');
-            bar.style.width = width;
+            if (width) {
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, index * 200);
+            }
         });
     }
 
     // =============================================
-    // TYPING EFFECT FOR HERO TITLE
+    // HERO SCROLL FUNCTIONALITY
     // =============================================
-    function createTypingEffect() {
-        const typingText = document.querySelector('.typing-text');
-        const text = "Hi, I'm J. M. Jamal";
-        let index = 0;
-        
-        if (typingText) {
-            typingText.textContent = '';
-            
-            function type() {
-                if (index < text.length) {
-                    typingText.textContent += text.charAt(index);
-                    index++;
-                    setTimeout(type, 100);
-                }
+    const heroScroll = document.querySelector('.hero-scroll');
+    if (heroScroll) {
+        heroScroll.addEventListener('click', function() {
+            const aboutSection = document.querySelector('#about');
+            if (aboutSection) {
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = aboutSection.offsetTop - navbarHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
             }
-            
-            // Start typing effect after hero animations
-            setTimeout(type, 1000);
-        }
+        });
     }
-
-    // Initialize typing effect
-    createTypingEffect();
 
     // =============================================
     // PROJECT FILTERING
@@ -330,69 +329,64 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // =============================================
-    // PARTICLE ANIMATION ENHANCEMENT
+    // PARTICLE ANIMATION
     // =============================================
     function createFloatingParticles() {
         const particlesContainer = document.querySelector('.particles');
         
         if (particlesContainer) {
-            // Create additional floating particles
-            for (let i = 0; i < 20; i++) {
+            // Create floating particles
+            for (let i = 0; i < 50; i++) {
                 const particle = document.createElement('div');
-                particle.style.position = 'absolute';
-                particle.style.width = Math.random() * 4 + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.background = 'var(--accent-primary)';
-                particle.style.borderRadius = '50%';
-                particle.style.opacity = Math.random() * 0.5;
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animation = `float ${Math.random() * 10 + 10}s infinite linear`;
-                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.cssText = `
+                    position: absolute;
+                    width: ${Math.random() * 4 + 1}px;
+                    height: ${Math.random() * 4 + 1}px;
+                    background: ${Math.random() > 0.5 ? 'var(--accent-primary)' : 'var(--accent-secondary)'};
+                    border-radius: 50%;
+                    opacity: ${Math.random() * 0.5 + 0.2};
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    animation: float ${Math.random() * 15 + 10}s infinite linear;
+                    animation-delay: ${Math.random() * 5}s;
+                    pointer-events: none;
+                `;
                 
                 particlesContainer.appendChild(particle);
             }
         }
     }
 
+    // Add CSS for float animation
+    const floatStyle = document.createElement('style');
+    floatStyle.textContent = `
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+            100% { transform: translate(0, 0) rotate(360deg); opacity: 1; }
+        }
+    `;
+    document.head.appendChild(floatStyle);
+
     // Initialize floating particles
     createFloatingParticles();
 
     // =============================================
-    // SMOOTH SCROLL TO TOP FUNCTIONALITY
+    // SCROLL TO TOP FUNCTIONALITY
     // =============================================
     const scrollToTop = document.createElement('button');
     scrollToTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
     scrollToTop.className = 'scroll-to-top';
-    scrollToTop.style.cssText = `
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: none;
-        background: var(--accent-primary);
-        color: white;
-        font-size: 1.2rem;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-        box-shadow: 0 4px 20px rgba(102, 110, 232, 0.3);
-    `;
     
     document.body.appendChild(scrollToTop);
     
     // Show/hide scroll to top button
     window.addEventListener('scroll', function() {
         if (window.scrollY > 500) {
-            scrollToTop.style.opacity = '1';
-            scrollToTop.style.visibility = 'visible';
+            scrollToTop.classList.add('visible');
         } else {
-            scrollToTop.style.opacity = '0';
-            scrollToTop.style.visibility = 'hidden';
+            scrollToTop.classList.remove('visible');
         }
     });
     
@@ -405,37 +399,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // =============================================
-    // PRELOADER (OPTIONAL)
+    // TYPING EFFECT FOR HERO SECTION (OPTIONAL)
     // =============================================
-    function hidePreloader() {
-        const preloader = document.querySelector('.preloader');
-        if (preloader) {
-            setTimeout(() => {
-                preloader.style.opacity = '0';
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 300);
-            }, 1000);
+    function createTypingEffect() {
+        const typingText = document.querySelector('.typing-text');
+        if (typingText) {
+            const originalText = typingText.textContent;
+            typingText.textContent = '';
+            
+            let i = 0;
+            const typeInterval = setInterval(() => {
+                if (i < originalText.length) {
+                    typingText.textContent += originalText.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeInterval);
+                }
+            }, 100);
         }
     }
 
-    // Hide preloader when everything is loaded
-    window.addEventListener('load', hidePreloader);
-
-    // =============================================
-    // CONSOLE GREETING MESSAGE
-    // =============================================
-    console.log(`
-    🎨 Portfolio Website by J. M. Jamal
-    
-    👨‍💻 Node.js Developer & UI/UX Designer
-    🚀 Creating seamless digital experiences
-    
-    📧 Contact: jamal@example.com
-    🌐 GitHub: https://github.com/Jamaludheen2426
-    
-    Built with ❤️ using HTML, CSS, and Vanilla JavaScript
-    `);
+    // Uncomment the line below to enable typing effect
+    // createTypingEffect();
 
     // =============================================
     // PERFORMANCE MONITORING
@@ -444,13 +429,15 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('load', function() {
             setTimeout(() => {
                 const perfData = performance.getEntriesByType('navigation')[0];
-                console.log(`⚡ Page loaded in ${Math.round(perfData.loadEventEnd - perfData.fetchStart)}ms`);
+                if (perfData) {
+                    console.log(`⚡ Page loaded in ${Math.round(perfData.loadEventEnd - perfData.fetchStart)}ms`);
+                }
             }, 0);
         });
     }
 
     // =============================================
-    // ADDITIONAL UTILITY FUNCTIONS
+    // UTILITY FUNCTIONS
     // =============================================
     
     // Debounce function for scroll events
@@ -466,7 +453,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // Apply debounce to scroll event handlers
+    // Apply debounce to scroll event handlers for better performance
     const debouncedUpdateNav = debounce(updateActiveNav, 100);
     window.removeEventListener('scroll', updateActiveNav);
     window.addEventListener('scroll', debouncedUpdateNav);
@@ -507,7 +494,86 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 10000);
             
             console.log('🌈 Rainbow mode activated! You found the easter egg!');
+            alert('🎉 Congratulations! You found the secret easter egg!');
         }
     });
+
+    // =============================================
+    // CONSOLE GREETING MESSAGE
+    // =============================================
+    console.log(`
+    🎨 Portfolio Website by J. M. Jamal
+    
+    👨‍💻 Node.js Developer & UI/UX Designer
+    🚀 Creating seamless digital experiences
+    
+    📧 Contact: jamal@example.com
+    🌐 GitHub: https://github.com/Jamaludheen2426
+    
+    Built with ❤️ using HTML, CSS, and Vanilla JavaScript
+    `);
+
+    // =============================================
+    // INTERSECTION OBSERVER FOR BETTER ANIMATIONS
+    // =============================================
+    const animateOnScroll = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Animate elements on scroll
+    document.querySelectorAll('.project-card, .timeline-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease';
+        animateOnScroll.observe(el);
+    });
+
+    // =============================================
+    // SMOOTH SCROLL POLYFILL FOR OLDER BROWSERS
+    // =============================================
+    if (!('scrollBehavior' in document.documentElement.style)) {
+        const smoothScrollPolyfill = function(target, duration = 800) {
+            const targetPosition = target.offsetTop - document.querySelector('.navbar').offsetHeight;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = ease(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function ease(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        };
+
+        // Override smooth scroll for nav links if needed
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    smoothScrollPolyfill(target);
+                }
+            });
+        });
+    }
 
 }); // End of DOMContentLoaded
